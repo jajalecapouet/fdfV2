@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 10:19:58 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/04 16:50:59 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/08 15:00:16 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
@@ -28,7 +29,7 @@ typedef struct	s_data
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_lenght;
+	int		line_length;
 	int		endian;
 }	t_data;
 
@@ -58,6 +59,15 @@ typedef struct	s_point
 
 // La structure s_all contient tout, ce qui me permet de ne jamais avoir plus de 4 paramètres dans mes fonctions.
 
+typedef struct	s_plan
+{
+	int	x;
+	int	y;
+	int	couleur;
+	int	exist;
+}	t_plan;
+
+
 typedef struct	s_all
 {
 	t_data	*data;
@@ -66,6 +76,7 @@ typedef struct	s_all
 	t_point	**tab;
 	void	*mlx;
 	void	*win;
+	t_plan	**plan;
 }	t_all;
 
 // Fonction de gestion de fin de programme
@@ -90,15 +101,26 @@ int		compteur_points_ligne(char *ligne);
 double	donne_distance(int x, int y);
 double	donne_angle(int x, int y, double dist);
 void	ligne_suivante(t_list **lst);
+void	init_xy(t_point *p, int x, int y, t_all *michel);
 t_list	*fill_lst(int fd, int *ht);
 t_point	*fill_tab(char *pixel, t_all *michel, int y);
 t_point	**tab_build(t_list **map, t_all *michel);
 void	stock_info_tab(int fd, t_all *michel);
+t_plan	**malloc_plan(int ht, int lg);
 
 // !!!!! A SUPPRIMER AVANT RENDU !!!!!!!! Fonctions de tests
 
-// 
+// Fonctions de tracé et d'affichage
 
 int		fdf(t_all *michel);
-
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		dtoi(double d);
+int		cal(double d, double t, double s);
+void	planeur(t_all *m);
+int		moy_col(int *pts, int dep, int arr, int pos);
+void	trace_trait_y(int *pts, t_data *d);
+void	trace_trait_x(int *pts, t_data *d);
+void	traiteur(int x, int y, t_all *m);
+int		remplir_image(t_all *m);
+int		dans_le_cadre(int x, int y);
 #endif
