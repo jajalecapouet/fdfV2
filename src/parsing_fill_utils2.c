@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:24:00 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/04 14:26:14 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/07 16:10:51 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,38 @@ int	ckoilacouleur(char *pixel)
 		return (0xfd6c9e);
 	else
 		return (hexa_to_int(&pixel[i + 3]));
+}
+
+void	init_xy(t_point *p, int x, int y, t_all *michel)
+{
+	p->x_init = x - michel->lg / 2;
+	p->y_init = y - michel->ht / 2;
+	p->x = (double)p->x_init;
+	p->y = (double)p->y_init;
+}
+
+t_plan	**malloc_plan(int ht, int lg)
+{
+	int	i;
+	int	j;
+	t_plan	**plan;
+	
+	plan = malloc(sizeof(t_plan *) * ht + 1);
+	if (!plan)
+		return (NULL);
+	i = -1;
+	while (++i < ht)
+	{
+		plan[i] = malloc(sizeof(t_plan) * lg + 1);
+		if (!plan[i])
+		{
+			while (--i >= 0)
+				free(plan[i]);
+			free(plan);
+			return (NULL);
+		}
+		plan[i][lg].exist = 0;
+	}
+	plan[i] = NULL;
+	return (plan);
 }

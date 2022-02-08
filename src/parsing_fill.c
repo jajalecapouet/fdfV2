@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 11:42:21 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/04 16:40:44 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/07 16:00:38 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_point	*fill_tab(char *pixel, t_all *michel, int y)
 	i = 0;
 	while (pixel)
 	{
-		pouet[i].x_init = i - michel->lg / 2;
-		pouet[i].y_init = y - michel->ht / 2;
+		init_xy(&pouet[i], i, y, michel);
 		pouet[i].z_init = ft_atoi(pixel);
+		pouet[i].z = (double)pouet[i].z_init;
 		pouet[i].couleur = ckoilacouleur(pixel);
 		pouet[i].dist_xy = donne_distance(pouet[i].x_init, pouet[i].y_init);
 		pouet[i].dist_xz = donne_distance(pouet[i].x_init, pouet[i].z_init);
@@ -109,11 +109,21 @@ void	stock_info_tab(int fd, t_all *michel)
 
 	lst_lignes = fill_lst(fd, &(michel->ht));
 	if (!lst_lignes)
+	{
+		michel->plan = NULL;
 		michel->tab = NULL;
+	}
 	else
 	{
 		michel->lg = compteur_points_ligne(lst_lignes->content);
-		michel->tab = tab_build(&lst_lignes, michel);
+		michel->plan = malloc_plan(michel->ht, michel->lg);
+		if (!michel->plan)
+		{
+			freezbi(michel->tab);
+			michel->tab = NULL;
+		}
+		else
+			michel->tab = tab_build(&lst_lignes, michel);
 		if (!michel->tab)
 			ft_lstclear(&lst_lignes, free);
 	}

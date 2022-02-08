@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 10:58:33 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/04 15:40:46 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/07 14:53:00 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	main(int ac, char **av)
 		free(michel);
 		return (puterror(11));
 	}
+	ft_putendl_fd("carte stockée", 1);
 	return (puterror(fdf(michel)));
 }
