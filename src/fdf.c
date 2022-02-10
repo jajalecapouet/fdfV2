@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:42:06 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/08 15:40:34 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 15:16:58 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	fdf(t_all *m)
 {
 	if (!init_fdf(m))
 		return (11);
+	//rotato_x(m->tab, 0);
+	//rotato_y(m->tab, 0);
+	//rotato_z(m->tab, 0);
 	remplir_image(m);
 	mlx_put_image_to_window(m->mlx, m->win, m->data->img, 0, 0);
 	mlx_loop(m->mlx);

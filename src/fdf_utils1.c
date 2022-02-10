@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 10:51:40 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/08 10:02:32 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 15:07:53 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	cal(double d, double t, double s)
 {
 	int	cal;
 
-	cal = dtoi(s * (1 / 2 + d / (t * 2 * M_SQRT2)));
+	cal = dtoi(s * (1.0 / 2.0 + d / (t * 2 * M_SQRT2)));
 	return (cal);
 }
 
@@ -65,7 +65,7 @@ int	remplir_image(t_all *m)
 	{
 		while (m->plan[j][i].exist)
 		{
-			if (dans_le_cadre(m->plan[j][i].x, m->plan[j][i].x))
+			if (dans_le_cadre(m->plan[j][i].x, m->plan[j][i].y))
 			{
 				my_mlx_pixel_put(m->data, m->plan[j][i].x, m->plan[j][i].y, m->plan[j][i].couleur);
 				traiteur(i, j, m);

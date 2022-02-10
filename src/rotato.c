@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:03:37 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/08 15:35:34 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 14:06:37 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotato_x(t_point **tab, double angle)
 	j = -1;
 	while (tab[++j])
 	{
-		while (tab[j][++i].dist_xy > 0.1)
+		while (tab[j][++i].exist == 1)
 		{
 			pre_y = tab[j][i].y;
 			tab[j][i].angle_yz += angle;
@@ -46,7 +46,7 @@ void	rotato_y(t_point **tab, double angle)
 	j = -1;
 	while (tab[++j])
 	{
-		while (tab[j][++i].dist_xy > 0.1)
+		while (tab[j][++i].exist == 1)
 		{
 			pre_x = tab[j][i].x;
 			tab[j][i].angle_xz += angle;
@@ -69,7 +69,7 @@ void	rotato_z(t_point **tab, double angle)
 	j = -1;
 	while (tab[++j])
 	{
-		while (tab[j][++i].dist_xy > 0.1)
+		while (tab[j][++i].exist == 1)
 		{
 			pre_x = tab[j][i].x;
 			tab[j][i].angle_xy += angle;

@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:24:00 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/07 16:10:51 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 14:00:19 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ckoilacouleur(char *pixel)
 	while (ft_isdigit((int)pixel[i]))
 		i++;
 	if (pixel[i] == ' ' || pixel[i] == '\n' || pixel[i] == 0)
-		return (0xfd6c9e);
+		return (0xffffff);
 	else
 		return (hexa_to_int(&pixel[i + 3]));
 }
@@ -77,6 +77,7 @@ void	init_xy(t_point *p, int x, int y, t_all *michel)
 	p->y_init = y - michel->ht / 2;
 	p->x = (double)p->x_init;
 	p->y = (double)p->y_init;
+	p->exist = 1;
 }
 
 t_plan	**malloc_plan(int ht, int lg)

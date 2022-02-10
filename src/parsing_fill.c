@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 11:42:21 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/07 16:00:38 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 13:07:04 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_point	*fill_tab(char *pixel, t_all *michel, int y)
 		i++;
 		pixel = pixel_suivant(pixel);
 	}
-	pouet[i].dist_xy = 0.09;
+	pouet[i].exist = 0;
 	return (pouet);
 }
 
