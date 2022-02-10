@@ -6,7 +6,7 @@
 /*   By: njaros <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 10:19:58 by njaros            #+#    #+#             */
-/*   Updated: 2022/02/08 15:00:16 by njaros           ###   ########lyon.fr   */
+/*   Updated: 2022/02/10 13:21:55 by njaros           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_point
 	int		y_init;
 	int		z_init;
 	int		couleur;
+	int		exist;
 	double	dist_xy;
 	double	dist_xz;
 	double	dist_yz;
@@ -118,9 +119,16 @@ int		dtoi(double d);
 int		cal(double d, double t, double s);
 void	planeur(t_all *m);
 int		moy_col(int *pts, int dep, int arr, int pos);
-void	trace_trait_y(int *pts, t_data *d);
-void	trace_trait_x(int *pts, t_data *d);
+void	trace_trait_yy(int *pts, t_data *d);
+void	trace_trait_yx(int *pts, t_data *d);
 void	traiteur(int x, int y, t_all *m);
 int		remplir_image(t_all *m);
 int		dans_le_cadre(int x, int y);
+
+// Fonctions de transformations
+
+void	rotato_x(t_point **tab, double angle);
+void	rotato_y(t_point **tab, double angle);
+void	rotato_z(t_point **tab, double angle);
+
 #endif
